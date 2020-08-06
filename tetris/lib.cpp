@@ -48,4 +48,5 @@ int getKeyValue(void) {
 		printf("[*]Current Key : VK_SPACE");
 		return VK_SPACE;
 	}
+	return 0;
 }

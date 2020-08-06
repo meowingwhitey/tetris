@@ -227,7 +227,45 @@ void settingBlock(int** map, Block* block) {
 }
 
 void moveBlock(int ** map, int key, Block* block) {
+	int i, j;
+	//블럭의 키에 따른 이동 값
+	COORD diff = {0, 0};
 
+	switch (key) {
+	case VK_UP:
+		diff = {0, -1};
+		break;
+	case VK_DOWN:
+		diff = {0, 1};
+		break;
+	case VK_LEFT:
+		diff = {-1, 0};
+		break;
+	case VK_RIGHT:
+		diff = {1, 0};
+		break;
+	default:
+		break;
+	}
+	gotoxy(13, 4);
+	printf("[%d, %d] \n", block->pos.X, block->pos.Y);
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
+			if (blockShape[block->type][block->rotate][j][i] == 1) {
+				//이전 블럭을 창에서 지워줌
+				if (block->pos.Y - 4 > 0) {
+					gotoxy(block->pos.X + i, block->pos.Y + j - 4);
+					printf("  ");
+				}
+				if (block->pos.Y + j - 4 > 0) {
+					gotoxy(block->pos.X + diff.X + i, block->pos.Y + diff.Y + j - 4);
+					printf("■");
+				}
+			}
+		}
+	}
+	block->pos.X = block->pos.X + diff.X;
+	block->pos.Y = block->pos.Y + diff.Y;
 }
 
 Block * generateBlock(void) {

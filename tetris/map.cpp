@@ -22,10 +22,6 @@ void createMapBorder() {
 		printf("■");
 	}
 }
-//더블버퍼링 방식 사용
-void refreshMap() {
-
-}
 int** initMap() {
 	//블럭 생성시 내려와야 되므로 위 4개의 공간을 추가로 줌
 	int** map = (int**)malloc(sizeof(int*)*(mapHeight + 4));

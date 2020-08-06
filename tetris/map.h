@@ -10,9 +10,6 @@ extern const int mapHeight;
 //맵 경계 출력
 void createMapBorder(void);
 
-//순수 맵 출력
-void refreshMap(void);
-
 //malloc 맵 생성 및 반환
 //return : mapValue[mapWidth][mapHeight];
 int** initMap(void);
