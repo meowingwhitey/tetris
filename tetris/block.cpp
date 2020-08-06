@@ -249,15 +249,26 @@ void moveBlock(int ** map, int key, Block* block) {
 	}
 	gotoxy(13, 4);
 	printf("[%d, %d] \n", block->pos.X, block->pos.Y);
+	//X축
 	for (i = 0; i < 4; i++) {
+		//Y축
 		for (j = 0; j < 4; j++) {
 			if (blockShape[block->type][block->rotate][j][i] == 1) {
 				//이전 블럭을 창에서 지워줌
-				if (block->pos.Y - 4 > 0) {
+				if (block->pos.Y + j - 4 > 0) {
 					gotoxy(block->pos.X + i, block->pos.Y + j - 4);
 					printf("  ");
 				}
-				if (block->pos.Y + j - 4 > 0) {
+
+			}
+		}
+	}
+	//X축
+	for (i = 0; i < 4; i++) {
+		//Y축
+		for (j = 0; j < 4; j++) {
+			if (blockShape[block->type][block->rotate][j][i] == 1) {
+				if (block->pos.Y + j - 4 + diff.Y > 0) {
 					gotoxy(block->pos.X + diff.X + i, block->pos.Y + diff.Y + j - 4);
 					printf("■");
 				}

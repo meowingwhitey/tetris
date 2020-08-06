@@ -4,11 +4,17 @@
 
 #include "lib.h"
 
+#define MAP_BORDER 3
+#define MAP_BLOCK_FIXED 2
+#define MAP_BLOCK_MOVE 1
+#define MAP_EMPTY 0
+
+//맵 크기(경계 포함)
 extern const int mapWidth;
 extern const int mapHeight;
 
 //맵 경계 출력
-void createMapBorder(void);
+void createMapBorder(int ** map);
 
 //malloc 맵 생성 및 반환
 //return : mapValue[mapWidth][mapHeight];
@@ -16,4 +22,5 @@ int** initMap(void);
 
 //malloc으로 생성된 맵 free
 void deleteMap(int ** map);
+
 #endif //MAP_H

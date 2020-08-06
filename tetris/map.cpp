@@ -1,33 +1,62 @@
 ﻿#include "map.h"
 
-extern const int mapWidth = 10;
-extern const int mapHeight = 20;
+//실제 맵 크기(10)+맵 경계(2)
+extern const int mapWidth = 12;
+//실제 맵 크기(20)+맵 경계(2)+블럭생성 공간(4)
+extern const int mapHeight = 26;
 
-void createMapBorder() {
+void createMapBorder(int ** map) {
 	int i, j;
+	//콘솔에 맵 출력(블럭 생성을 위한 공간은 출력 X)
 	gotoxy(0, 0);
-	for (i = 0; i <= mapWidth + 1; i++) {
+	for (i = 0; i < mapWidth; i++) {
 		printf("■");
 	}
-	for (i = 1; i <= mapHeight; i++) {
-		gotoxy(0, i);
-		printf("■");
-		for (j = 1; j <= mapWidth; j++) {
-			printf("  ");
+	for (i = 5; i < mapHeight; i++) {
+		for (j = 0; j < mapWidth; j++) {
+			if (map[i][j] == MAP_BORDER) {
+				gotoxy(j, i - 4);
+				printf("■");
+			}
 		}
-		printf("■");
 	}
-	gotoxy(0, mapHeight + 1);
-	for (i = 0; i <= mapWidth + 1; i++) {
-		printf("■");
+	/*
+	//gotoxy(0, 0);
+	for (i = 0; i < mapHeight; i++) {
+		for (j = 0; j < mapWidth; j++) {
+			printf("%d", map[j][i]);
+			//printf("aa");
+		}
+		printf("\n");
 	}
+	*/
 }
 int** initMap() {
-	//블럭 생성시 내려와야 되므로 위 4개의 공간을 추가로 줌
-	int** map = (int**)malloc(sizeof(int*)*(mapHeight + 4));
-	int i = 0;
-	for (i = 0; i < mapHeight + 4; i++) {
+	int** map;
+	int i, j;
+	map = (int**)malloc(sizeof(int*) * mapHeight);
+	for (i = 0; i < mapHeight; i++) {
 		map[i] = (int*)malloc(sizeof(int)*mapWidth);
+	}
+	//맵 기본값(MAP_EMPTY로 초기화)
+	for (i = 0; i < mapHeight; i++) {
+		for (j = 0; j < mapWidth; j++) {
+			map[i][j] = MAP_EMPTY;
+		}
+	}
+	//맵 배열에 MAP_BORDER 값 추가
+	for (i = 0; i < mapHeight; i++) {
+		//맵의 최상단 || 맵의 최하단
+		if (i == 0 || i == mapHeight - 1) {
+			for (j = 0; j < mapWidth; j++) {
+				map[i][j] = MAP_BORDER;
+			}
+		}
+		//맵의 중간
+		else {
+			map[i][0] = MAP_BORDER;
+			map[i][mapWidth - 1] = MAP_BORDER;
+		}
 	}
 	return map;
 }

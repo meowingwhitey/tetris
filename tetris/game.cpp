@@ -3,14 +3,13 @@
 Block block;
 void runGame(void) {
 	int** map;
-	int key;
-	Block * currentBlock ;
-		//커서 깜빡임 삭제
+	int key;Block * currentBlock ;
+	//커서 깜빡임 삭제
 	cursorView(0);
 	//2차원 맵을 동적으로 할당 받음
 	map = initMap();
 	//맵 경계 생성
-	createMapBorder();
+	createMapBorder(map);
 
 	//첫 블럭 구조체 생성
 	currentBlock = generateBlock();
