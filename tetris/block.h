@@ -17,7 +17,15 @@ typedef struct _Block {
 void settingBlock(int** map, Block* block);
 
 //블럭 위치 이동
-void moveBlock(int** map, int key, Block* block);
+//이후 게임에서 블럭의 이동여부를 체크해야됨
+//반환값 1 -> 블럭이동O
+//반환값 0 -> 블럭이동X
+int moveBlock(int** map, int key, Block* block);
+
+//블럭 회전
+//좌회전 - z, ctrl
+//우회전 - x, ↑
+int rotateBlock(int** map, int key, Block* block);
 
 //블럭 구조체 동적 할당
 Block * generateBlock(void);

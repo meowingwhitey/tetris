@@ -21,6 +21,17 @@ void cursorView(char show)
     SetConsoleCursorInfo(hConsole, &ConsoleCursor);
 }
 
+// 키 구현 계획 
+/*
+좌회전 - z, ctrl
+우회전 - x, ↑
+드롭 - v, ↓
+좌이동 - ←
+우이동 - →
+
+하드드롭 - 스페이스
+홀드 - shift, c 
+*/
 int getKeyValue(void) {
 	//키 입력 받음
 	if (GetAsyncKeyState(VK_UP) != 0) {

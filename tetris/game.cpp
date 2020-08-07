@@ -18,10 +18,13 @@ void runGame(void) {
 	settingBlock(map, currentBlock);
 	while (1) {
 		key = getKeyValue();
-		if (key == VK_UP || key == VK_DOWN || key == VK_LEFT || key == VK_RIGHT) {
+		if (key == VK_DOWN || key == VK_LEFT || key == VK_RIGHT) {
 			moveBlock(map, key, currentBlock);
 		}
-		Sleep(33);
+		else if (key == VK_UP) {
+			rotateBlock(map, key, currentBlock);
+		}
+		Sleep(100);
 		//블럭이 안착시 malloc으로 생성된 블럭 삭제
 		//deleteBlock(*currentBlock);
 	}
