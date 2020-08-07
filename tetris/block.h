@@ -25,4 +25,7 @@ Block * generateBlock(void);
 //생성된 블럭 삭제
 void deleteBlock(Block *block);
 
+//블럭 이동시에 충돌 탐지
+int isBlockCollision(int ** map, Block *block, COORD diff);
+
 #endif //BLOCK_H

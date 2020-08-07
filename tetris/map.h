@@ -4,11 +4,6 @@
 
 #include "lib.h"
 
-#define MAP_BORDER 3
-#define MAP_BLOCK_FIXED 2
-#define MAP_BLOCK_MOVE 1
-#define MAP_EMPTY 0
-
 //맵 크기(경계 포함)
 extern const int mapWidth;
 extern const int mapHeight;

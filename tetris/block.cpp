@@ -230,7 +230,6 @@ void moveBlock(int ** map, int key, Block* block) {
 	int i, j;
 	//블럭의 키에 따른 이동 값
 	COORD diff = {0, 0};
-
 	switch (key) {
 	case VK_UP:
 		diff = {0, -1};
@@ -247,14 +246,24 @@ void moveBlock(int ** map, int key, Block* block) {
 	default:
 		break;
 	}
+	if (isBlockCollision(map, block, diff)) {
+		return;
+	}
 	gotoxy(13, 4);
 	printf("[%d, %d] \n", block->pos.X, block->pos.Y);
+	gotoxy(13, 5);
+	printf("[*] blockType : %d\n",block->type);
+	gotoxy(13, 6);
+	printf("[*] blockRotate : %d\n", block->rotate);
+
 	//X축
 	for (i = 0; i < 4; i++) {
 		//Y축
 		for (j = 0; j < 4; j++) {
 			if (blockShape[block->type][block->rotate][j][i] == 1) {
 				//이전 블럭을 창에서 지워줌
+				//실제 맵이랑 출력되는 맵은 Y축에서 4의 차이가 있으므로
+				//이를 맞추기 위해 출력할때 -4의 가중치를 채워줌
 				if (block->pos.Y + j - 4 > 0) {
 					gotoxy(block->pos.X + i, block->pos.Y + j - 4);
 					printf("  ");
@@ -293,4 +302,26 @@ Block * generateBlock(void) {
 void deleteBlock(Block* block) {
 	free(block);
 	return;
+}
+
+int isBlockCollision(int** map, Block* block, COORD diff) {
+	int i, j;
+	//이동할 위치
+	COORD pos = { 0, 0 };
+
+	pos.X = block->pos.X + diff.X;
+	pos.Y = block->pos.Y + diff.Y;
+	//블럭은 위로는 쌓일 수 있음
+	//블럭이 위로 충돌할 시에는 게임이 끝난 것이므로 이후 게임진행시 처리해주어야함
+	//pos.Y = block->pos.Y + diff.Y - 4;
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
+			if (blockShape[block->type][block->rotate][j][i] == 1) {
+				if (map[pos.Y + j][pos.X + i] == MAP_BORDER) {
+					return 1;
+				}
+			}
+		}
+	}
+	return 0;
 }

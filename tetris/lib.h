@@ -8,6 +8,11 @@
 #include<time.h>
 #include<Windows.h>
 
+#define MAP_BORDER 3
+#define MAP_BLOCK_FIXED 2
+#define MAP_BLOCK_MOVE 1
+#define MAP_EMPTY 0
+
 void gotoxy(int x, int y);
 void cursorView(char show);
 int getKeyValue(void);
