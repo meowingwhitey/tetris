@@ -340,21 +340,23 @@ int isBlockCollision(int** map, Block* block, COORD diff) {
 //일단은 VK_UP시 회전하는 것까지만 구현
 int rotateBlock(int** map, int key, Block* block) {
 	int i, j;
-
+	//이전 rotate 값
+	int prevRotate;
 	//충돌 체크시 diff를 { 0, 0 }으로 줌
 	//block->rotate 값을 일시적으로 변경 후
 	//충돌 확인시 기존 값으로 복원하여 충돌 방지
+	prevRotate = block->rotate;
 	block->rotate = (block->rotate + 1) % 4;
 	if (isBlockCollision(map, block, {0, 0})) {
 		//블럭 회전X일때
-		block->rotate = block->rotate - 1;
+		block->rotate = prevRotate;
 		return 0;
 	}
 	//X축
 	for (i = 0; i < 4; i++) {
 		//Y축
 		for (j = 0; j < 4; j++) {
-			if (blockShape[block->type][block->rotate - 1][j][i] == 1) {
+			if (blockShape[block->type][prevRotate][j][i] == 1) {
 				//이전 블럭을 창에서 지워줌
 				//실제 맵이랑 출력되는 맵은 Y축에서 4의 차이가 있으므로
 				//이를 맞추기 위해 출력할때 -4의 가중치를 채워줌
