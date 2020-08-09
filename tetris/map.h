@@ -18,4 +18,9 @@ int** initMap(void);
 //malloc으로 생성된 맵 free
 void deleteMap(int ** map);
 
+//한 라인이 완성되었는지 여부 결정
+//만약 라인이 완성되었다면 라인 삭제
+//반환값 : 완성된 라인의 갯수 
+int isLineFull(int** map);
+
 #endif //MAP_H

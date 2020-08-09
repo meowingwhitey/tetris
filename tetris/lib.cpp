@@ -36,27 +36,27 @@ int getKeyValue(void) {
 	//키 입력 받음
 	if (GetAsyncKeyState(VK_UP) != 0) {
 		gotoxy(13, 3);
-		printf("[*]Current Key : VK_UP    ");
+		//printf("[*]Current Key : VK_UP    ");
 		return VK_UP;
 	}
 	if (GetAsyncKeyState(VK_DOWN) != 0) {
 		gotoxy(13, 3);
-		printf("[*]Current Key : VK_DOWN    ");
+		//printf("[*]Current Key : VK_DOWN    ");
 		return VK_DOWN;
 	}
 	if (GetAsyncKeyState(VK_RIGHT) != 0) {
 		gotoxy(13, 3);
-		printf("[*]Current Key : VK_RIGHT    ");
+		//printf("[*]Current Key : VK_RIGHT    ");
 		return VK_RIGHT;
 	}
 	if (GetAsyncKeyState(VK_LEFT) != 0) {
 		gotoxy(13, 3);
-		printf("[*]Current Key : VK_LEFT    ");
+		//printf("[*]Current Key : VK_LEFT    ");
 		return VK_LEFT;
 	}
 	if (GetAsyncKeyState(VK_SPACE) != 0) {
 		gotoxy(13, 3);
-		printf("[*]Current Key : VK_SPACE");
+		//printf("[*]Current Key : VK_SPACE");
 		return VK_SPACE;
 	}
 	return 0;

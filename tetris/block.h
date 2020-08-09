@@ -36,4 +36,13 @@ void deleteBlock(Block *block);
 //블럭 이동시에 충돌 탐지
 int isBlockCollision(int ** map, Block *block, COORD diff);
 
+//블럭을 맵에 입력시킴
+int fixBlock(int ** map, Block *block);
+
+//블럭이 이동 가능한지 여부 체크
+int isBlockMovable(int ** map, Block *block);
+
+//블럭이 바닥인지 여부 체크
+int isBlockBottom(int ** map, Block * block);
+
 #endif //BLOCK_H
